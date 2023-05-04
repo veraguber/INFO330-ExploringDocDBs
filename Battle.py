@@ -5,8 +5,10 @@ mongoClient = MongoClient("mongodb://localhost/pokemon")
 pokemonDB = mongoClient['pokemondb']
 pokemonColl = pokemonDB['pokemon_data']
 
+
 def fetch(pokemonid):
-    return pokemonColl.find_one({"pokedex_number":pokemonid})
+    return pokemonColl.find_one({"pokedex_number": pokemonid})
+
 
 def battle(pokemon1, pokemon2):
     print("Let the Pokemon battle begin! ================")
@@ -19,8 +21,11 @@ def battle(pokemon1, pokemon2):
             print(pokemon2['name'] + "'s " + stat + " is superior")
 
     winner = random.randrange(2)
-    if winner == 0: print("Battle results: " + pokemon1['name'])
-    if winner == 1: print("Battle results: " + pokemon2['name'])
+    if winner == 0:
+        print("Battle results: " + pokemon1['name'])
+    if winner == 1:
+        print("Battle results: " + pokemon2['name'])
+
 
 def main():
     # Fetch two pokemon from the MongoDB database
@@ -29,5 +34,6 @@ def main():
 
     # Pit them against one another
     battle(pokemon1, pokemon2)
+
 
 main()
