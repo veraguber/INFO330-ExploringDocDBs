@@ -9,9 +9,7 @@ pokemonColl = pokemonDB['pokemon_data']
 connection = sqlite3.connect('pokemon.sqlite')
 pokemonCursor = connection.cursor()
 pokemon_data = pokemonCursor.execute(
-    "SELECT p.name, p.pokedex_number, p.hp, p.attack, p.defense, p.speed, p.sp_attack, p.sp_defense, (t2.type1 || ' ' || t2.type2) AS types FROM pokemon AS p JOIN pokemon_types_view AS t2 ON p.name = t2.name LIMIT 10").fetchall()
-for pokemon in pokemon_data:
-    print(pokemon)
+    "SELECT p.name, p.pokedex_number, p.hp, p.attack, p.defense, p.speed, p.sp_attack, p.sp_defense, (t2.type1 || ' ' || t2.type2) AS types FROM pokemon AS p JOIN pokemon_types_view AS t2 ON p.name = t2.name").fetchall()
 
 for poke in pokemon_data:
     ability_lst = []
@@ -20,8 +18,6 @@ for poke in pokemon_data:
     for ability in abilities:
         new = ability[0].strip("',")
         ability_lst.append(new)
-    print(ability_lst)
-    print(abilities)
     pokemon_object = {
         "name": poke[0],
         "pokedex_number": poke[1],
@@ -36,9 +32,7 @@ for poke in pokemon_data:
     }
     pokemonColl.insert_one(pokemon_object)
 
-pikachu = pokemonColl.find({"name": "Pikachu"})
-print(pikachu)
-above_150 = pokemonColl.find({"attack": {"$gt": 150}})
-print(above_150)
-overgrow = pokemonColl.find({"abilities": {"$elemMatch": {"$eq": "Overgrow"}}})
-print(overgrow)
+cursor = pokemonColl.find({})
+
+for document in cursor:
+    print(document)
