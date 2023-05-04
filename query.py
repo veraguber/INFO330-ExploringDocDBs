@@ -4,7 +4,9 @@ mongoClient = MongoClient("mongodb://localhost/pokemon")
 pokemonDB = mongoClient['pokemondb']
 pokemonColl = pokemonDB['pokemon_data']
 
-pikachu = pokemonColl.find({'name': 'Pikachu'})
+query = {"name": "Pikachu"}
+
+pikachu = pokemonColl.find(query)
 for val in pikachu:
     print(val)
 # above_150 = pokemonColl.find({"attack": {"$gt": 150}})

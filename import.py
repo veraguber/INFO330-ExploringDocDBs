@@ -11,10 +11,9 @@ pokemonColl = pokemonDB['pokemon_data']
 connection = sqlite3.connect('pokemon.sqlite')
 pokemonCursor = connection.cursor()
 pokemon_data = pokemonCursor.execute(
-    "SELECT p.name, p.pokedex_number, p.hp, p.attack, p.defense, p.speed, p.sp_attack, p.sp_defense FROM pokemon p LIMIT 10").fetchall()
+    "SELECT p.name, p.pokedex_number, p.hp, p.attack, p.defense, p.speed, p.sp_attack, p.sp_defense FROM pokemon p").fetchall()
 
 for poke in pokemon_data:
-    print(poke)
     ability_lst = []
     abilities = pokemonCursor.execute(
         "SELECT a.name FROM ability a JOIN pokemon_abilities p ON a.id = p.ability_id WHERE p.pokemon_id=?", (poke[1],)).fetchall()
