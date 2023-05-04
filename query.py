@@ -9,7 +9,9 @@ query = {"name": "Pikachu"}
 pikachu = pokemonColl.find(query)
 for val in pikachu:
     print(val)
-# above_150 = pokemonColl.find({"attack": {"$gt": 150}})
-# print(above_150)
+above_150 = pokemonColl.find({"attack": {"$gt": 150}})
+for above in above_150:
+    print(above)
 # overgrow = pokemonColl.find({"abilities": {"$elemMatch": {"$eq": "Overgrow"}}})
-# print(overgrow)
+# for pokemon_obj in overgrow:
+#     print(pokemon_obj)
