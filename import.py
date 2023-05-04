@@ -14,9 +14,14 @@ for pokemon in pokemon_data:
     print(pokemon)
 
 for poke in pokemon_data:
+    ability_lst = []
     abilities = pokemonCursor.execute(
         "SELECT a.name FROM ability a JOIN pokemon_abilities p ON a.id = p.ability_id WHERE p.pokemon_id=?", (poke[1],)).fetchall()
-    # print(abilities)
+    for ability in abilities:
+        new = ability[0].strip("',")
+        ability_lst.append(new)
+    print(ability_lst)
+    print(abilities)
     pokemon_object = {
         "name": poke[0],
         "pokedex_number": poke[1],
@@ -27,6 +32,13 @@ for poke in pokemon_data:
         "speed": poke[5],
         "sp_attack": poke[6],
         "sp_defense": poke[7],
-        "abilities": abilities
+        "abilities": ability_lst
     }
     pokemonColl.insert_one(pokemon_object)
+
+pikachu = pokemonColl.find({"name": "Pikachu"})
+print(pikachu)
+above_150 = pokemonColl.find({"attack": {"$gt": 150}})
+print(above_150)
+overgrow = pokemonColl.find({"abilities": {"$elemMatch": {"$eq": "Overgrow"}}})
+print(overgrow)
