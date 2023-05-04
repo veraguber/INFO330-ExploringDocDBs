@@ -1,5 +1,5 @@
 import sqlite3
-import sys
+# import sys
 from pymongo import MongoClient
 
 mongoClient = MongoClient("mongodb://localhost/pokemon")
