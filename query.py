@@ -12,6 +12,6 @@ for val in pikachu:
 above_150 = pokemonColl.find({"attack": {"$gt": 150}})
 for above in above_150:
     print(above)
-# overgrow = pokemonColl.find({"abilities": {"$elemMatch": {"$eq": "Overgrow"}}})
-# for pokemon_obj in overgrow:
-#     print(pokemon_obj)
+overgrow = pokemonColl.find({"abilities": {"$elemMatch": {"$eq": 'Overgrow'}}})
+for pokemon_obj in overgrow:
+    print(pokemon_obj)
